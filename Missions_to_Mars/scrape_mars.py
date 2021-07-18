@@ -47,7 +47,20 @@ def scrape():
     featured_image_url = url + soup.find('img', class_='fancybox-image')['src']
     print(f"Featured Image URL: {featured_image_url}")
     data_dict['image'] = featured_image_url
-
+    
+    url = 'https://galaxyfacts-mars.com'
+    browser.visit(url)
+    html = browser.html
+    # BeautifulSoup
+    soup = BeautifulSoup(html, "html.parser")
+    # Facts about the planet
+    mars_facts = soup.find('table', class_ ='table table-striped')
+    mars_facts = pd.read_html(str(mars_facts))[0]
+    mars_facts.rename(columns={0: 'Description', 1: 'Values'}, errors='raise', inplace=True)
+    mars_facts = mars_facts.to_html()
+    # mars_facts = mars_facts.set_index('Description')
+    mars_facts
+    data_dict['table'] = mars_facts
 
 
 
