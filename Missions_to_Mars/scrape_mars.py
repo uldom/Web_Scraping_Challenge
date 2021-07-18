@@ -31,3 +31,18 @@ def scrape():
     data_dict ['news'] = article_dict
     print(data_dict)
     return data_dict
+    url = 'https://spaceimages-mars.com/'
+    data_dict = {}
+    executable_path = {'executable_path': ChromeDriverManager().install()}
+    browser = Browser('chrome', **executable_path, headless=False)
+    browser.visit(url)
+    # HTML
+    html = browser.html
+    # BeautifulSoup
+    soup = BeautifulSoup(html, "html.parser")
+    # Home splinter click the 'Full Image' button
+    f_image = browser.links.find_by_partial_text('FULL IMAGE').click()
+    # Image
+    featured_image_url = url + soup.find('img', class_='fancybox-image')['src']
+    print(f"Featured Image URL: {featured_image_url}")
+    
