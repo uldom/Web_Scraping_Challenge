@@ -7,8 +7,11 @@
     <title>Mission to Mars</title>
 </head>
 <body>
-<p> {{info['news']['title']}}</p>
+<p> {{info['news']['title']| safe}}</p>
 <br>
-<p> {{info['news']['paragraph']}}</p>
+<p> {{info['news']['paragraph']| safe}}</p>
+<br>
+<p>{{info['image']['paragraph']| safe}}</p>
+<img src= "{{info['image'] | safe}}">
 </body>
 </html>
