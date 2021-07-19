@@ -100,7 +100,8 @@ def scrape():
         browser.back()
         article_dict = {'titles': titles, 'img_url': img_url}
 
-    data_dict['mars_hemispheres'] = mars_hemispheres
-
+    data_dict['mars_hemispheres'] = article_dict
+    
+    article_dict
 
     return data_dict

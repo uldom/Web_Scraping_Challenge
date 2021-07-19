@@ -16,12 +16,14 @@
 <br>
 <p> {{info['table'] | safe}}</p>
 <br>
-<p> {{info['mars_hemispheres'][0] | safe}}</p> -->
-<br>
-<p> {{info['mars_hemispheres']['titles'][1]| safe}}</p>
-<p> {{info['mars_hemispheres']['img_url'][1]| safe}}</p>
+<!-- <p> {{info['mars_hemispheres'][0] | safe}}</p> -->
+<!-- <p> {{info['mars_hemispheres']['titles'][1]| safe}}</p> -->
+<!-- <p> {{info['mars_hemispheres']['img_url'][1]| safe}}</p> --> -->
 
-
-
+<ul id="data_dict">
+    {% for item in data_dict %}
+        <li><a href="{{info.mars_hemispheres[0].img_url | safe}}">{{info.mars_hemispheres[0].title | safe }}</a></li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
