@@ -91,17 +91,17 @@ def scrape():
         links = browser.find_by_css('.description h3')
         links[i].click()
         titles = browser.find_by_css('h2.title').text
-        img_url = browser.find_link_by_text('Original').first
+        img_url = browser.find_link_by_text('Sample').first
         img_url = img_url['href']
         mars_hemispheres.append({'titles': titles, 'img_url':img_url})
         # data_dict['mars_hemispheres'] = article_dict.append ({'title': title, 'img_url': img_url})
         print(titles)
         print(img_url)
         browser.back()
-        article_dict = {'titles': titles, 'img_url': img_url}
+        # article_dict = ({'titles': titles, 'img_url': img_url})
 
-    data_dict['mars_hemispheres'] = article_dict
-    
-    article_dict
+    data_dict['mars_hemispheres'] = mars_hemispheres
+    print(data_dict)
+    # article_dict
 
     return data_dict
