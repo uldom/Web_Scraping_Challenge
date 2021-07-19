@@ -102,6 +102,6 @@ def scrape():
 
     data_dict['mars_hemispheres'] = mars_hemispheres
     print(data_dict)
-    # article_dict
+    
 
     return data_dict
