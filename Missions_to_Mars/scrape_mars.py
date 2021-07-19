@@ -8,6 +8,7 @@ from pprint import pprint as pp
 
 # Set Executable Path & Initialize Chrome Browser
 def scrape():
+    # url for NASA Mars News
     url = 'https://redplanetscience.com'
     data_dict = {}
     # Browser
@@ -30,7 +31,8 @@ def scrape():
     article_dict = {'title': title, 'paragraph': paragraph}
     data_dict ['news'] = article_dict
     print(data_dict)
-    
+
+    # New url for JPL Mars Space Images - Featured Image
     url = 'https://spaceimages-mars.com/'
     browser.visit(url)
     # HTML
@@ -48,6 +50,7 @@ def scrape():
     print(f"Featured Image URL: {featured_image_url}")
     data_dict['image'] = featured_image_url
     
+    # New url for Mars Facts
     url = 'https://galaxyfacts-mars.com'
     browser.visit(url)
     html = browser.html
@@ -62,6 +65,42 @@ def scrape():
     mars_facts
     data_dict['table'] = mars_facts
 
+    # # New url for Mars Hemispheres
+    # url = 'https://marshemispheres.com/'
+    # browser.visit(url)
+    # # Home splinter click the Cerberus Hemisphere image
+    # links = browser.find_by_css('.description h3')
+    # len(links)
+    # links[0].click()
+    # title = browser.find_by_css('h2.title')[0].text
+    # img_url = browser.find_link_by_text('Original').first
+    # img_url = img_url['href']
+    # data_dict['title'] = title
+    # data_dict['img_url'] = img_url
+    
+    # Loop de la muerte
+
+    mars_hemispheres=[]
+
+    url = 'https://marshemispheres.com/'
+    browser.visit(url)
+
+    for i in range (4):
+        html = browser.html
+        soup = BeautifulSoup(html,'html.parser')
+        links = browser.find_by_css('.description h3')
+        links[i].click()
+        titles = browser.find_by_css('h2.title').text
+        img_url = browser.find_link_by_text('Original').first
+        img_url = img_url['href']
+        mars_hemispheres.append({'titles': titles, 'img_url':img_url})
+        # data_dict['mars_hemispheres'] = article_dict.append ({'title': title, 'img_url': img_url})
+        print(titles)
+        print(img_url)
+        browser.back()
+        article_dict = {'titles': titles, 'img_url': img_url}
+
+    data_dict['mars_hemispheres'] = mars_hemispheres
 
 
     return data_dict
