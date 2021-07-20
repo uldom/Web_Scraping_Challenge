@@ -11,7 +11,7 @@ mongo = PyMongo(app)
 # Home
 @app.route('/')
 def index():
-    scraper()
+    # scraper()
     info = mongo.db.info.find_one()
     return render_template('index.html', info=info)
 
