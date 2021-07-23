@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,26 +12,33 @@
     <!--CSS Link-->
     <link rel="stylesheet" type="text/css">
     <style>
-        .table .thead-dark th {
-            background-color: dimgray;
+        .table thead th {
+            background-color: rgb(168, 32, 14);
             border-color: dimgray;
+            text-align: left;
+            color: #EFEFEF
         }
+
         a:link:active,
         a:visited:active {
             color: white;
         }
+
         .responsive {
             width: 10%;
             height: auto;
         }
+
         .btn-primary {
             background-color: dimgray;
             border-color: white;
         }
+
         .btn-default:hover {
             background-color: #922B21;
             border-color: white;
         }
+
         .page-footer {
             background-color: IndianRed;
             margin-top: 60px;
@@ -38,47 +46,70 @@
             bottom: 0;
             width: 100%;
         }
+
         .footer-copyright {
             color: white;
             border-top: 5px solid dimgray
         }
+
         .jumbotron {
             color: #EFEFEF;
             background-color: rgb(168, 32, 14);
             width: 100%;
         }
+
+        #data_dict img {
+            padding-bottom: 20px;
+            padding-top: 10px;
+        }
     </style>
 </head>
+
 <body>
     <!-- Jumbotron -->
     <div class="jumbotron p-3 p-md-5 text-white rounded background-color">
-        <div class="col-md-6 px-0">
-            <h1 class="display-4 font-italic">Hello Mars</h1>
-            <p class="lead my-3">This is a web application that scrapes various websites for data related to the Mission
-                to Mars and displays the information on a single HTML page.</p>
-            <a class="btn btn-primary btn-default btn-lg" href="/scrape" role="button">Let's scrape</a>
+        <div class='container'>
+            <div class='row'>
+                <div class="col-md-6 px-0">
+                    <h1 class="display-4 font-italic">Hello Mars</h1>
+                    <p class="lead my-3">This is a web application that scrapes various websites for data related to the
+                        Mission
+                        to Mars and displays the information on a single HTML page.</p>
+                    <a class="btn btn-primary btn-default btn-lg" href="/scrape" role="button">Let's scrape</a>
+                </div>
+            </div>
         </div>
     </div>
-<p> {{info['news']['title']| safe}}</p>
-<br>
-<p> {{info['news']['paragraph']| safe}}</p>
-<br>
-<p>{{info['image']['paragraph']| safe}}</p>
-<img src= "{{info['image'] | safe}}">
-<br>
-<p> {{info['table'] | safe}}</p>
-<br>
+    <div class='container'>
+        <p> {{info['news']['title']| safe}}</p>
+        <br>
+        <p> {{info['news']['paragraph']| safe}}</p>
+        <br>
+        <p>{{info['image']['paragraph']| safe}}</p>
+        <img src="{{info['image'] | safe}}">
+        <br>
+        <p> {{info['table'] | safe}}</p>
+    </div>
+    <br>
+    <div id="data_dict" class="container">
+        <div class="row">
+            {% for item in info['mars_hemispheres'] %}
+            <div class="col-6">
+                {{item['titles'] | safe}}
+                <img src="{{item['img_url'] | safe }}" class='img-fluid'>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- <ul id="data_dict">
+        {% for item in info['mars_hemispheres'] %}
+        <li class='col-6'> {{item['titles'] | safe}}
+            <img src="{{item['img_url'] | safe }}">
+        </li>
 
-<ul id="data_dict">
-    {% for item in info['mars_hemispheres'] %}
-        <li> {{item['titles'] | safe}}
-            <br>
-            <br>
-            <img src="{{item['img_url'] | safe }}"></li>
-            <p></p>
-            <p></p>
-            <!-- <a href="{{info.mars_hemispheres[0].img_url | safe}}">{{info.mars_hemispheres[0].title | safe }}</a></li> -->
-    {% endfor %}
-    </ul>
+        <a href="{{info.mars_hemispheres[0].img_url | safe}}">{{info.mars_hemispheres[0].title | safe }}</a></li>
+        {% endfor %}
+    </ul> -->
 </body>
+
 </html>

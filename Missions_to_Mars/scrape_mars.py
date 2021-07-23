@@ -60,7 +60,7 @@ def scrape():
     mars_facts = soup.find('table', class_ ='table table-striped')
     mars_facts = pd.read_html(str(mars_facts))[0]
     mars_facts.rename(columns={0: 'Description', 1: 'Values'}, errors='raise', inplace=True)
-    mars_facts = mars_facts.to_html()
+    mars_facts = mars_facts.to_html(index=False, classes=['table', 'table-striped'])
     # mars_facts = mars_facts.set_index('Description')
     mars_facts
     data_dict['table'] = mars_facts
